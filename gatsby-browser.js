@@ -8,6 +8,7 @@ import NavContextProvider from './src/context/nav-context-provider'
 
 import './src/stylesheets/style.sass'
 import { StateInspector } from 'reinspect'
+import { TranslationContextProvider } from '@superrb/gatsby-addons/context'
 
 export const wrapRootElement = ({ element }) => (
   <StateInspector name="App">
@@ -17,9 +18,11 @@ export const wrapRootElement = ({ element }) => (
       )}
     >
       <PrismicPreviewProvider repositoryConfigs={repositoryConfigs}>
-        <NavContextProvider>
-          <Layout>{element}</Layout>
-        </NavContextProvider>
+        <TranslationContextProvider>
+          <NavContextProvider>
+            <Layout>{element}</Layout>
+          </NavContextProvider>
+        </TranslationContextProvider>
       </PrismicPreviewProvider>
     </PrismicProvider>
   </StateInspector>

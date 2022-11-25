@@ -8,6 +8,7 @@ import { repositoryConfigs } from './src/utils/prismicPreviews'
 import NavContextProvider from './src/context/nav-context-provider'
 
 import './src/stylesheets/style.sass'
+import { TranslationContextProvider } from '@superrb/gatsby-addons/context'
 
 export const wrapRootElement = ({ element }) => (
   <PrismicProvider
@@ -16,9 +17,11 @@ export const wrapRootElement = ({ element }) => (
     )}
   >
     <PrismicPreviewProvider repositoryConfigs={repositoryConfigs}>
-      <NavContextProvider>
-        <Layout>{element}</Layout>
-      </NavContextProvider>
+      <TranslationContextProvider>
+        <NavContextProvider>
+          <Layout>{element}</Layout>
+        </NavContextProvider>
+      </TranslationContextProvider>
     </PrismicPreviewProvider>
   </PrismicProvider>
 )

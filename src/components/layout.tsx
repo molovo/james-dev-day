@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { PropsWithChildren, useCallback, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { SkipTo } from './skip-to'
 import Header from './header'
 import Footer from './footer'
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children }: PropsWithChildren<{}>) => {
   return (
     <>
       <Helmet>
