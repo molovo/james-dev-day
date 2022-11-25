@@ -1,3 +1,5 @@
+import { Link, Page } from '@superrb/gatsby-addons/types'
+
 /**
  * The Link Resolver used for the Prismic repository. This function converts a
  * Prismic document to a URL within your app. It is used throughout your app to
@@ -9,7 +11,7 @@
  *
  * @returns URL for the provided Prismic document.
  */
-exports.linkResolver = (doc) => {
+export const linkResolver = (doc: Page | Link) => {
   switch (doc.type) {
     default:
       return '/'

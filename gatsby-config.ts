@@ -1,13 +1,14 @@
-const path = require('path')
-const dotenv = require('dotenv')
+import { GatsbyConfig } from 'gatsby'
+import path from 'path'
+import dotenv from 'dotenv'
+import { linkResolver } from './src/utils/linkResolver'
 
 dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const prismicConfig = require('./prismic-configuration')
-
-module.exports = {
+const config: GatsbyConfig = {
+  graphqlTypegen: true,
   siteMetadata: {
     title: 'Gatsby Prismic Blog',
     description: 'Blog example for Gatsby & Prismic',
@@ -16,10 +17,10 @@ module.exports = {
     {
       resolve: 'gatsby-source-prismic',
       options: {
-        repositoryName: prismicConfig.prismicRepo,
+        repositoryName: process.env.GATSBY_PRISMIC_REPO_NAME,
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
         customTypesApiToken: process.env.PRISMIC_CUSTOM_TYPES_API_TOKEN,
-        linkResolver: require('./src/utils/linkResolver').linkResolver,
+        linkResolver,
       },
     },
     {
@@ -54,3 +55,5 @@ module.exports = {
     },
   ],
 }
+
+export default config

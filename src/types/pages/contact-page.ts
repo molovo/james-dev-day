@@ -1,14 +1,12 @@
 import { graphql } from 'gatsby'
 import { Page } from '@superrb/gatsby-addons/types'
-import { SliceLike, SliceZoneLike } from '@prismicio/react'
 
-interface Homepage extends Page {
+interface ContactPage extends Page {
   data: Page['data']
-  body: SliceZoneLike<SliceLike<string>>
 }
 
 export const query = graphql`
-  fragment Homepage on PrismicHomepage {
+  fragment ContactPage on PrismicContactPage {
     _previewable
     uid
     id
@@ -23,17 +21,6 @@ export const query = graphql`
 
     data {
       page_title
-
-      body {
-        ... on PrismicSliceType {
-          slice_type
-        }
-        ...HomepageDataBodyText
-        ...HomepageDataBodyQuote
-        ...HomepageDataBodyFullWidthImage
-        ...HomepageDataBodyImageGallery
-        ...HomepageDataBodyImageHighlight
-      }
 
       meta_description
       meta_navigation_title
@@ -55,4 +42,4 @@ export const query = graphql`
   }
 `
 
-export default Homepage
+export default ContactPage

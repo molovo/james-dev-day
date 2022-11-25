@@ -16,7 +16,7 @@ export const Layout = ({ children }: PropsWithChildren<{}>) => {
       </Helmet>
       <SkipTo />
       <Header />
-      <main>{children}</main>
+      <main id="content">{children}</main>
       <Footer />
     </>
   )

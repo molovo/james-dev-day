@@ -1,11 +1,11 @@
 import React, { useCallback, useContext, useEffect, useRef } from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
-import MainHeader from '../types/main-header'
-import MenuToggle from './navigation/mobile-menu-toggle'
+import MainHeader, { MainHeaderLink } from '../types/main-header'
 import { NavContext } from '../context/nav-context-provider'
 import { linkResolver } from '../utils/linkResolver'
 import { SiteConfig } from '@superrb/gatsby-addons/types'
 import { useIsMobile } from '@superrb/gatsby-addons/hooks'
+import { MenuToggle } from '@superrb/gatsby-addons/components'
 
 const Header = () => {
   const data = useStaticQuery(graphql`
@@ -60,20 +60,24 @@ const Header = () => {
             className="main-header__toggle"
             label="Open Nav"
             closeLabel="Close Nav"
+            aria-controls="nav"
           />
         )}
         <nav
+          id="nav"
           className="main-header__nav nav"
           aria-hidden={isMobile && !navOpen}
         >
           <ul className="nav__list">
-            {header.data.navigation_items.map((link, index) => (
-              <li key={index} className="nav__item">
-                <Link to={linkResolver(link.link)} className="nav__link">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {header.data.navigation_items.map(
+              (link: MainHeaderLink, index: number) => (
+                <li key={index} className="nav__item">
+                  <Link to={linkResolver(link.link)} className="nav__link">
+                    {link.label}
+                  </Link>
+                </li>
+              ),
+            )}
           </ul>
         </nav>
       </div>
