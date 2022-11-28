@@ -6,9 +6,12 @@ import { PageStub } from '@superrb/gatsby-addons/types'
 import { SliceZone } from '@prismicio/react'
 import { components } from '../slices'
 
-const Index = ({ data }: PageProps<{ page: Homepage }, PageStub>) => {
+const Index = ({
+  data,
+}: PageProps<{ prismicHomepage: Homepage }, PageStub>) => {
+  console.log(data)
   /** @type {Homepage} page */
-  const page = data.page
+  const page = data.prismicHomepage
   if (!page) {
     return null
   }

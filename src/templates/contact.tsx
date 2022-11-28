@@ -25,8 +25,8 @@ const Schema = yup.object({
 
 const ContactPage = ({
   data,
-}: PageProps<{ page: ContactPageType }, PageStub>) => {
-  const page = data.page
+}: PageProps<{ prismicContactPage: ContactPageType }, PageStub>) => {
+  const page = data.prismicContactPage
   if (!page) {
     return null
   }

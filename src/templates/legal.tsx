@@ -5,9 +5,11 @@ import { Page, Seo } from '@superrb/gatsby-addons/components'
 import { PageStub } from '@superrb/gatsby-addons/types'
 import LegalPageType from '../types/pages/legal-page'
 
-const LegalPage = ({ data }: PageProps<{ page: LegalPageType }, PageStub>) => {
+const LegalPage = ({
+  data,
+}: PageProps<{ prismicLegalPage: LegalPageType }, PageStub>) => {
   /** @type {Homepage} page */
-  const page = data.page
+  const page = data.prismicLegalPage
   if (!page) {
     return null
   }

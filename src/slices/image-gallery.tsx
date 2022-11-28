@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Button, Image } from '@superrb/gatsby-addons/components'
+import { Button, Image, Slideshow } from '@superrb/gatsby-addons/components'
 import { SliceComponentProps } from '@prismicio/react'
 import { Slice } from '@prismicio/types'
 import {
@@ -25,9 +25,10 @@ export const ImageGallery = ({
   return (
     <section className="image-gallery content-section">
       <h2>{slice.primary.gallery_title}</h2>
-      <div className="image-gallery__gallery">
+
+      <Slideshow autoPlay={true} slideDuration={10000}>
         {slice.items.map((galleryItem, index) => (
-          <div className="image-gallery__item" key={`gallery-item=${index}`}>
+          <div className="image-gallery__item" key={`gallery-item-${index}`}>
             <figure className="image-gallery__image">
               <Image image={galleryItem.image} />
 
@@ -36,15 +37,13 @@ export const ImageGallery = ({
               )}
             </figure>
 
-            <p className="image-gallery__link">
-              <Button
-                href={galleryItem.link.url}
-                label={galleryItem.link_label}
-              />
-            </p>
+            <Button
+              href={galleryItem.link.url}
+              label={galleryItem.link_label}
+            />
           </div>
         ))}
-      </div>
+      </Slideshow>
     </section>
   )
 }
