@@ -1,20 +1,23 @@
+import { Page, RichText } from '@superrb/gatsby-addons/types'
 import { graphql } from 'gatsby'
-import { Page } from '@superrb/gatsby-addons/types'
 
-interface ContactPage extends Page {
-  data: Page['data']
+interface LegalPage extends Page {
+  last_publication_date: string
+  data: Page['data'] & {
+    content: RichText
+  }
 }
 
 export const query = graphql`
-  fragment ContactPage on PrismicContactPage {
+  fragment LegalPage on PrismicLegalPage {
     _previewable
     uid
     id
     lang
-    type
     tags
-    first_publication_date
-    last_publication_date
+    type
+    first_publication_date(formatString: "Y-m-d")
+    last_publication_date(formatString: "Y-m-d")
     alternate_languages {
       ...AlternateLanguage
     }
@@ -22,6 +25,12 @@ export const query = graphql`
     data {
       page_title
 
+      # Content Tab
+      content {
+        ...RichText
+      }
+
+      # Meta Tab
       meta_description
       meta_navigation_title
       meta_robots
@@ -41,4 +50,4 @@ export const query = graphql`
   }
 `
 
-export default ContactPage
+export default LegalPage

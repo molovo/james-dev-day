@@ -1,4 +1,4 @@
-import { Page } from '@superrb/gatsby-addons/types'
+import { PageStub } from '@superrb/gatsby-addons/types'
 import path from 'path'
 import { linkResolver } from './src/utils/linkResolver'
 
@@ -45,7 +45,7 @@ export const createPages = async ({ graphql, actions }) => {
   `)
 
   // create legal pages
-  result.data.homepages.nodes.forEach((page: Partial<Page>) => {
+  result.data.homepages.nodes.forEach((page: PageStub) => {
     createPage({
       path: linkResolver(page),
       component: path.resolve(__dirname, 'src/templates/homepage.tsx'),
@@ -57,7 +57,7 @@ export const createPages = async ({ graphql, actions }) => {
   })
 
   // create legal pages
-  result.data.legalPages.nodes.forEach((page: Partial<Page>) => {
+  result.data.legalPages.nodes.forEach((page: PageStub) => {
     createPage({
       path: linkResolver(page),
       component: path.resolve(__dirname, 'src/templates/legal.tsx'),
@@ -69,7 +69,7 @@ export const createPages = async ({ graphql, actions }) => {
   })
 
   // create contact pages
-  result.data.contactPages.nodes.forEach((page: Partial<Page>) => {
+  result.data.contactPages.nodes.forEach((page: PageStub) => {
     createPage({
       path: linkResolver(page),
       component: path.resolve(__dirname, 'src/templates/contact.tsx'),

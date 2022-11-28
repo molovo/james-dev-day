@@ -1,8 +1,9 @@
 import { Form, Page } from '@superrb/gatsby-addons/components'
+import { PageStub } from '@superrb/gatsby-addons/types'
 import { graphql, PageProps } from 'gatsby'
 import React from 'react'
 import * as yup from 'yup'
-import ContactPage from '../types/pages/contact-page'
+import ContactPageType from '../types/pages/contact-page'
 
 const NATURE_OF_ENQUIRY_OPTIONS = [
   'General Enquiry',
@@ -22,8 +23,9 @@ const Schema = yup.object({
   message: yup.string().meta({ textarea: true }).required(),
 })
 
-const ContactPage = ({ data }: PageProps<{ page: ContactPage }>) => {
-  /** @type {ContactPage} page */
+const ContactPage = ({
+  data,
+}: PageProps<{ page: ContactPageType }, PageStub>) => {
   const page = data.page
   if (!page) {
     return null
@@ -48,7 +50,11 @@ const ContactPage = ({ data }: PageProps<{ page: ContactPage }>) => {
 }
 
 export const query = graphql`
-  query ContactPageQuery
+  query ContactPageQuery($id: String) {
+    prismicContactPage(id: { eq: $id }) {
+      ...ContactPage
+    }
+  }
 `
 
 export default ContactPage

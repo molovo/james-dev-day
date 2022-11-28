@@ -7,8 +7,6 @@
 
 import { componentResolverFromMap } from 'gatsby-plugin-prismic-previews'
 import { linkResolver } from './linkResolver'
-import gatsbyConfig from '../../gatsby-config'
-import { IPluginRefObject } from 'gatsby'
 
 // import Post from '../templates/post'
 // import Posts from '../templates/posts'
@@ -23,10 +21,7 @@ import { IPluginRefObject } from 'gatsby'
  */
 export const repositoryConfigs = [
   {
-    repositoryName: (
-      gatsbyConfig.plugins as unknown as IPluginRefObject[]
-    )?.filter(({ resolve }) => resolve === 'gatsby-source-prismic').pop?.options
-      ?.repositoryName,
+    repositoryName: process.env.GATSBY_PRISMIC_REPO_NAME,
     linkResolver,
     componentResolver: componentResolverFromMap({}),
   },

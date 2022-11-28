@@ -40,16 +40,15 @@ export const query = graphql`
       meta_robots
       meta_title
       meta_image {
-        fluid {
+        alt
+        fluid(
+          imgixParams: { q: 75, auto: "compress", fm: "webp" }
+          srcSetBreakpoints: [25, 750, 1080, 1366, 1920, 2560, 3840, 4096, 5120]
+        ) {
           base64
           src
+          srcSet
         }
-        gatsbyImageData(
-          layout: CONSTRAINED
-          imgixParams: { q: 65 }
-          placeholder: BLURRED
-          breakpoints: [750, 1080, 1366, 1920, 2048, 2560, 3840, 4096, 5120]
-        )
       }
     }
   }

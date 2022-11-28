@@ -3,10 +3,9 @@ import React from 'react'
 import Homepage from '../types/pages/homepage'
 import { Page, Seo } from '@superrb/gatsby-addons/components'
 import { PageStub } from '@superrb/gatsby-addons/types'
-import { SliceZone } from '@prismicio/react'
-import { components } from '../slices'
+import LegalPageType from '../types/pages/legal-page'
 
-const Index = ({ data }: PageProps<{ page: Homepage }, PageStub>) => {
+const LegalPage = ({ data }: PageProps<{ page: LegalPageType }, PageStub>) => {
   /** @type {Homepage} page */
   const page = data.page
   if (!page) {
@@ -19,20 +18,17 @@ const Index = ({ data }: PageProps<{ page: Homepage }, PageStub>) => {
 
   return (
     <>
-      <Page page={page}>
-        {page_title && <h1>{page_title}</h1>}
-        <SliceZone slices={page.data.body} components={components} />
-      </Page>
+      <Page page={page}>{page_title && <h1>{page_title}</h1>}</Page>
     </>
   )
 }
 
 export const query = graphql`
-  query HomepageQuery($id: String) {
-    prismicHomepage(id: { eq: $id }) {
-      ...Homepage
+  query LegalPageQuery($id: String) {
+    prismicLegalPage(id: { eq: $id }) {
+      ...LegalPage
     }
   }
 `
 
-export default Index
+export default LegalPage

@@ -1,7 +1,7 @@
-import { GatsbyConfig } from 'gatsby'
-import path from 'path'
 import dotenv from 'dotenv'
+import path from 'path'
 import { linkResolver } from './src/utils/linkResolver'
+import { GatsbyConfig } from 'gatsby'
 
 dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
@@ -13,6 +13,7 @@ const config: GatsbyConfig = {
     title: 'Gatsby Prismic Blog',
     description: 'Blog example for Gatsby & Prismic',
   },
+  trailingSlash: 'never',
   plugins: [
     {
       resolve: 'gatsby-source-prismic',
@@ -26,7 +27,7 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-prismic-previews',
       options: {
-        repositoryName: prismicConfig.prismicRepo,
+        repositoryName: process.env.GATSBY_PRISMIC_REPO_NAME,
         accessToken: process.env.PRISMIC_ACCESS_TOKEN,
       },
     },
@@ -51,6 +52,64 @@ const config: GatsbyConfig = {
       options: {
         name: 'images',
         path: path.resolve(__dirname, 'src', 'images'),
+      },
+    },
+    {
+      resolve: `gatsby-plugin-multi-language-sitemap`,
+      options: {
+        excludes: ['/preview', '/styles'],
+        langs: ['en', 'jp'],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: process.env.GATSBY_SITE_URL,
+        sitemap: process.env.GATSBY_SITEMAP_URL,
+        resolveEnv: () => process.env.NODE_ENV,
+        env: {
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+          },
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }],
+          },
+        },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-gdpr-cookies`,
+      options: {
+        googleAnalytics: {
+          trackingId: process.env.GATSBY_GDPR_GOOGLE_ANALYTICS_ID, // leave empty if you want to disable the tracker
+          cookieName: 'gatsby-gdpr-google-analytics', // default
+          anonymize: true, // default
+          allowAdFeatures: false, // default
+        },
+        googleTagManager: {
+          trackingId: process.env.GATSBY_GDPR_GOOGLE_TAG_MANAGER_ID, // leave empty if you want to disable the tracker
+          cookieName: 'gatsby-gdpr-google-tagmanager', // default
+          dataLayerName: 'dataLayer', // default
+        },
+        facebookPixel: {
+          pixelId: process.env.GATSBY_GDPR_FACEBOOK_PIXEL_ID, // leave empty if you want to disable the tracker
+          cookieName: 'gatsby-gdpr-facebook-pixel', // default
+        },
+        tikTokPixel: {
+          pixelId: process.env.GATSBY_GDPR_TIKTOK_PIXEL_ID, // leave empty if you want to disable the tracker
+          cookieName: 'gatsby-gdpr-tiktok-pixel', // default
+        },
+        hotjar: {
+          hjid: process.env.GATSBY_GDPR_HOTJAR_ID,
+          hjsv: process.env.GATSBY_GDPR_HOTJAD_SNIPPET_VERSION,
+          cookieName: 'gatsby-gdpr-hotjar', // default
+        },
+        linkedin: {
+          trackingId: process.env.GATSBY_GDPR_LINKEDIN_ID, // leave empty if you want to disable the tracker
+          cookieName: 'gatsby-gdpr-linked-in', // default
+        },
+        // defines the environments where the tracking should be available  - default is ["production"]
+        environments: ['production'],
       },
     },
   ],

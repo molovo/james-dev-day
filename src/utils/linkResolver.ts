@@ -1,4 +1,4 @@
-import { Link, Page } from '@superrb/gatsby-addons/types'
+import { Link, Page, PageStub } from '@superrb/gatsby-addons/types'
 
 /**
  * The Link Resolver used for the Prismic repository. This function converts a
@@ -11,8 +11,15 @@ import { Link, Page } from '@superrb/gatsby-addons/types'
  *
  * @returns URL for the provided Prismic document.
  */
-export const linkResolver = (doc: Page | Link) => {
+export const linkResolver = (doc: PageStub | Link) => {
+  const lang = doc.lang === process.env.GATSBY_LANGUAGE ? '' : `/${doc.lang}`
+
   switch (doc.type) {
+    case 'contact_page':
+    case 'legal_page':
+      return `${lang}/${doc.uid}`
+    case 'homepage':
+      return `${lang}/`
     default:
       return '/'
   }
