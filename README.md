@@ -13,7 +13,7 @@ Use the following to perform a development build and run a local server.
 * copy `.env.example` to `.env.development`
 * populate Prismic API keys and repository name
 * Run `yarn`
-* Run `yarn develop`
+* Run `yarn start`
 
 ## Production Build (Local Simulation)
 
