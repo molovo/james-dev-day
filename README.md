@@ -7,12 +7,21 @@
 * Node v16.x
 * Yarn
 
-## Getting started
+## Getting started (Local Development)
 
+Use the following to perform a development build and run a local server.
 * copy `.env.example` to `.env.development`
 * populate Prismic API keys and repository name
 * Run `yarn`
 * Run `yarn develop`
+
+## Production Build (Local Simulation)
+
+Use the following to perform a production build and run a local server.
+* copy `.env.example` to `.env.production`
+* populate Prismic API keys and repository name
+* Run `yarn`
+* Run `yarn start:prod`
 
 ## More information
 
