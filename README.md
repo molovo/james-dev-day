@@ -1,4 +1,4 @@
-# Blackdawn website project
+# Superrb Gatsby Theme
 
 > [Gatsby](https://www.gatsbyjs.org/) template for websites with content managed in [Prismic](https://prismic.io)
 
