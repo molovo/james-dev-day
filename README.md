@@ -2,6 +2,8 @@
 
 > [Gatsby](https://www.gatsbyjs.org/) template for websites with content managed in [Prismic](https://prismic.io)
 
+You will need Prismic API keys to start to build this project. Please refer to `.env.example` for instructions.
+
 ## Requirements
 
 * Node v16.x
