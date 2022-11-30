@@ -2,12 +2,12 @@
 
 > [Gatsby](https://www.gatsbyjs.org/) template for websites with content managed in [Prismic](https://prismic.io)
 
-## Requirements
+## Requirements
 
 * Node v16.x
 * Yarn
 
-## Getting started
+## Getting started
 
 * copy `.env.example` to `.env.development`
 * populate Prismic API keys and repository name
