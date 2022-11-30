@@ -43,7 +43,7 @@
   "scripts": {
     "format": "prettier --write \"**/*.{js,jsx,json,scss,md}\"",
     "build": "gatsby build",
-    "develop": "netlify dev -c 'gatsby develop'",
+    "develop": "gatsby develop",
     "start": "npm run clean && npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
