@@ -5,7 +5,7 @@
   "dependencies": {
     "@prismicio/helpers": "^2.0.0",
     "@prismicio/react": "^2.5.0",
-    "@superrb/gatsby-addons": "link:../gatsby-addons",
+    "@superrb/gatsby-addons": "^5.2.0",
     "gatsby": "^4.9.0",
     "gatsby-plugin-gdpr-cookies": "^2.0.9",
     "gatsby-plugin-image": "2.3.0",
